@@ -62,3 +62,18 @@ void NixieDriver::display(int number) {
   // End sending.
   digitalWrite(_latchPin, HIGH);
 }
+
+/**
+ * { @inheritdoc }
+ */
+void NixieDriver::clear() {
+  // Start sending.
+  digitalWrite(_latchPin, LOW);
+  shiftOut(_dataPin, _clockPin, MSBFIRST, 255);
+  // Loop on all Nixies to set a value.
+  for (int i = _totalDisplaySize; i > 0; i = i-2) {
+    shiftOut(_dataPin, _clockPin, MSBFIRST, 255);
+  }
+  // End sending.
+  digitalWrite(_latchPin, HIGH);
+}

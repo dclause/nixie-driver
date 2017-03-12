@@ -35,6 +35,11 @@ class NixieDriver {
      */
     void display(int number);
     
+    /**
+     * Clears the display, ie light of all Nixies.
+     */
+    void clear();
+    
   private:
   
     /**
