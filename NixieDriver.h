@@ -66,6 +66,11 @@ class NixieDriver {
      * The number of Nixies available.
      */
     uint8_t _totalDisplaySize;
+	
+    /**
+     *  array to store number decomposition
+     */
+    uint8_t _NumberDecompArray[0x0A]; // 10 digit maximum with uint32_t
 
 		/**
 		 * Extracts the value of the given digit from a given number value.
@@ -83,6 +88,29 @@ class NixieDriver {
 		 */
 		int extractDigitValue(int value, int digit);
 
+		/**
+		 * Decompose number in digit and store it for future use.
+     *
+     * NOTE:
+     *
+     * @param number
+     *   The given Number to extract digit from.
+     */
+		void extractAllDigitValue(uint32_t number);
+
+		
+		    /**
+		 * Return Digit of stored number.
+     *
+     * @param Digit
+     *   The given integer value.
+     *
+     * @return int |  0xFF
+     *   Digit value of stored number.
+     *   if Digit asked is above 10 return is 0xFF
+		 */
+		uint8_t DigitValue(int digit);
+		
     /**
 		 * Calculates the number of digits in a given integer value.
      *
